@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "analysis.html",
+    "href": "analysis.html",
+    "title": "Example Analysis",
+    "section": "",
+    "text": "What is the difference in popularity (total ratings received) and user satisfaction (average rating) across different movie genres based on their release decades?\nThis analysis aims to move beyond simple overall statistics to understand the longitudinal trends of cinematic reception. The findings can offer insights into the lasting appeal of genres and how user tastes evolve over time.\n\n\n\nThis report is primarily intended for Film Producers, Movie Critics, and aspiring Data Analysts who seek to understand long-term genre performance and apply basic data wrangling and visualization techniques using the Tidyverse framework."
+  },
+  {
+    "objectID": "analysis.html#core-question",
+    "href": "analysis.html#core-question",
+    "title": "Example Analysis",
+    "section": "",
+    "text": "What is the difference in popularity (total ratings received) and user satisfaction (average rating) across different movie genres based on their release decades?\nThis analysis aims to move beyond simple overall statistics to understand the longitudinal trends of cinematic reception. The findings can offer insights into the lasting appeal of genres and how user tastes evolve over time."
+  },
+  {
+    "objectID": "analysis.html#intended-audience",
+    "href": "analysis.html#intended-audience",
+    "title": "Example Analysis",
+    "section": "",
+    "text": "This report is primarily intended for Film Producers, Movie Critics, and aspiring Data Analysts who seek to understand long-term genre performance and apply basic data wrangling and visualization techniques using the Tidyverse framework."
+  },
+  {
+    "objectID": "analysis.html#plot-1-average-rating-distribution",
+    "href": "analysis.html#plot-1-average-rating-distribution",
+    "title": "Example Analysis",
+    "section": "4.1 Plot 1: Average Rating Distribution",
+    "text": "4.1 Plot 1: Average Rating Distribution\nThis visualization uses faceting to compare the distribution of average ratings across different decades for major movie genres. A tightly grouped distribution suggests consistent critical reception, while a wider spread indicates high variance.\n\n# -------------------------------------------------------------------------------- #\n# Data Visualization\n# -------------------------------------------------------------------------------- #\n\n# --- Plot 1: Average Rating Distribution by Decade and Genre  --- #\n\n# Identify top genres for focused analysis\ntop_genres &lt;- summary_data %&gt;%\n  group_by(genres) %&gt;%\n  summarise(total_n = sum(n_ratings)) %&gt;%\n  filter(total_n &gt; 5000) %&gt;%\n  pull(genres)\n\n# Create the plot object\nplot1 &lt;- summary_data %&gt;%\n  filter(genres %in% top_genres) %&gt;% \n  ggplot(aes(x = decade, y = avg_rating, fill = decade)) +\n  geom_violin(trim = FALSE) + \n  geom_boxplot(width = 0.1, color = \"grey30\", outlier.shape = NA) +\n  # Facet by Genre\n  facet_wrap(~ genres, scales = \"free_y\", ncol = 3) + \n  labs(\n    title = \"Plot 1: Average Rating Distribution for Major Movie Genres by Decade\",\n    subtitle = \"Analysis of rating consistency across decades for genres with high rating volume.\",\n    x = \"Movie Release Decade\",\n    y = \"Average Rating (1.0 - 5.0)\",\n    caption = \"Data Source: MovieLens ml-latest-small Dataset | Facet: genres | Geoms: violin, boxplot\"\n  ) +\n  theme_minimal(base_size = 14) + \n  theme(\n    legend.position = \"none\",\n    axis.text.x = element_text(angle = 50, hjust = 1, size = 10), \n    panel.spacing = unit(1.5, \"lines\"), \n    # Center facet strip text\n    strip.text = element_text(face = \"bold\", size = 10),\n    # Adjust plot margins to prevent cropping\n    plot.margin = unit(c(0.2, 0.2, 0.2, 0.2), \"cm\") \n  )\n\n# Display the plot\nprint(plot1)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nKey Insight from Plot 1 The Drama genre exhibits a consistently high average rating distribution across all decades, suggesting its enduring quality or favorable perception among MovieLens users. Genres like Comedy show a wider spread, indicating high variance in user taste."
+  },
+  {
+    "objectID": "analysis.html#plot-2-popularity-trends-of-top-genres",
+    "href": "analysis.html#plot-2-popularity-trends-of-top-genres",
+    "title": "Example Analysis",
+    "section": "4.2 Plot 2: Popularity Trends of Top Genres",
+    "text": "4.2 Plot 2: Popularity Trends of Top Genres\nThis line plot tracks the popularity (total ratings count) of the top 5 genres over time, revealing which genres have dominated the user base’s viewing habits.\n\n# --- Plot 2: Popularity Trends of Top Genres over Time --- #\n# Identify the absolute top 5 genres for line plot\nabs_top_5_genres &lt;- summary_data %&gt;% \n  group_by(genres) %&gt;% \n  summarise(total_n = sum(n_ratings)) %&gt;% \n  arrange(desc(total_n)) %&gt;% \n  head(5) %&gt;% \n  pull(genres)\n\nsummary_data %&gt;%\n  filter(genres %in% abs_top_5_genres) %&gt;%\n  ggplot(aes(x = decade, y = n_ratings, group = genres, color = genres)) +\n  geom_line(size = 1.2) + \n  geom_point(size = 3) +\n  labs(\n    title = \"Plot 2: Popularity (Rating Count) Trend of Top 5 Genres by Decade\",\n    subtitle = \"Drama and Comedy consistently lead in popularity across the analyzed time span (1950s - 2010s).\",\n    x = \"Movie Release Decade\",\n    y = \"Total Number of Ratings (n_ratings)\",\n    color = \"Movie Genre\",\n    caption = \"Data Source: MovieLens ml-latest-small Dataset | Geoms: line, point\"\n  ) +\n  scale_y_continuous(labels = comma) + # Format Y-axis with commas\n  plot_theme +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))"
+  },
+  {
+    "objectID": "analysis.html#plot-3-highest-rated-genres-by-decade",
+    "href": "analysis.html#plot-3-highest-rated-genres-by-decade",
+    "title": "Example Analysis",
+    "section": "4.3 Plot 3: Highest-Rated Genres by Decade",
+    "text": "4.3 Plot 3: Highest-Rated Genres by Decade\nWe use a column chart to highlight which specific genre achieved the absolute highest average rating in each decade. This identifies smaller, high-quality genres that might be overlooked in a popularity analysis.\n\n# --- Plot 3: Highest-Rated Genres by Decade --- #\n\n# Find the single genre with the highest average rating for each decade\nhighest_rated_decade &lt;- summary_data %&gt;%\n  group_by(decade) %&gt;%\n  filter(avg_rating == max(avg_rating)) %&gt;%\n  ungroup()\n\nhighest_rated_decade %&gt;%\n  ggplot(aes(x = decade, y = avg_rating, fill = genres)) +\n  geom_col(position = \"dodge\") + \n  labs(\n    title = \"Plot 3: Highest Average Rated Genre in Each Decade\",\n    subtitle = \"Non-mainstream genres like Film-Noir and Documentary often claim the highest average rating in older decades.\",\n    x = \"Movie Release Decade\",\n    y = \"Highest Average Rating (1.0 - 5.0)\",\n    fill = \"Genre\",\n    caption = \"Data Source: MovieLens ml-latest-small Dataset | Geom: col\"\n  ) +\n  scale_y_continuous(limits = c(0, 5)) +\n  plot_theme +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n\n\n\n\n\n\n# -------------------------------------------------------------------------------- #\n# 5. Function List (For Requirement Check)\n# -------------------------------------------------------------------------------- #\ncat(\"\\n--- Used Tidyverse Functions (for review) ---\\n\")\n\n\n--- Used Tidyverse Functions (for review) ---\n\ncat(\"dplyr Functions (required 5): left_join(), mutate(), filter(), group_by(), summarise(), select()\\n\")\n\ndplyr Functions (required 5): left_join(), mutate(), filter(), group_by(), summarise(), select()\n\ncat(\"tidyr Functions (required 1): separate_rows()\\n\")\n\ntidyr Functions (required 1): separate_rows()\n\ncat(\"ggplot2 geom_*() Functions (required 3): geom_violin(), geom_boxplot(), geom_line(), geom_point(), geom_col()\\n\")\n\nggplot2 geom_*() Functions (required 3): geom_violin(), geom_boxplot(), geom_line(), geom_point(), geom_col()\n\ncat(\"ggplot2 Features: facet_wrap(), labs(title, subtitle, caption, x, y)\\n\")\n\nggplot2 Features: facet_wrap(), labs(title, subtitle, caption, x, y)\n\n\n\n\n\n\n\n\nNote\n\n\n\nData Limitation The MovieLens dataset, collected by volunteer users, often contains a bias toward users interested in older, more niche, or “cult” films. This specialized user base may lead to inflated average ratings for smaller genres like Film-Noir and Documentary which lack wide public appeal but are highly valued by enthusiasts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Welcome!\nHi, I’m Boran Zhang, a first year ScM in Biostatistics student.\nBelow are photos of my two cats. I love watching them play together. 🐾\n\n\n\n\nHe Ma\n\n\n\n\n\nGou Xiong"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About Me\nHi! My name is Boran Zhang, and I am a first-year ScM student in Biostatistics at Johns Hopkins University.\nI am originally from Beijing, China, where I completed my undergraduate studies at Guanghua School of Management, Peking University, majoring in Economics.\nMy current research interests focus on statistical methods in genomics — developing and applying statistical tools to understand genetic variation and its relationship to human health and disease.\nOutside of academics, I enjoy playing League of Legends in my free time."
+  }
+]

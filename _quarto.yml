@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "biostat777-intro-BORAN-ZHANG"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: about
+      - href: analysis.qmd
+        text: Example Analysis
+    right:
+      - icon: github
+        href: "https://github.com/bz1202/biostat777-intro-BORAN-ZHANG"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    page-layout: full
+
+
+

@@ -1,0 +1,24 @@
+---
+title: "Home"
+---
+
+# Welcome!
+
+Hi, I'm **Boran Zhang**, a first year ScM in Biostatistics student.
+
+Below are photos of my two cats. I love watching them play together. 🐾
+
+<div style="display:flex; justify-content:flex-start; align-items:flex-end; gap:30px;">
+  <figure style="text-align:center;">
+    <img src="images/cat3.jpeg" width="300" style="border-radius:10px;">
+    <figcaption><b>He Ma</b></figcaption>
+  </figure>
+  <figure style="text-align:center;">
+    <img src="images/cat1.jpeg" width="400" style="border-radius:10px;">
+    <figcaption><b>Gou Xiong</b></figcaption>
+  </figure>
+</div>
+
+
+
+

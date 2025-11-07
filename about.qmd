@@ -1,0 +1,12 @@
+---
+title: "About"
+---
+
+# About Me
+
+Hi! My name is **Boran Zhang**, and I am a first-year **ScM student in Biostatistics** at Johns Hopkins University.  
+I am originally from **Beijing, China**, where I completed my undergraduate studies at **Guanghua School of Management, Peking University**, majoring in **Economics**.
+
+My current research interests focus on **statistical methods in genomics** — developing and applying statistical tools to understand genetic variation and its relationship to human health and disease.
+
+Outside of academics, I enjoy playing **League of Legends** in my free time.
