@@ -21,6 +21,20 @@
     "text": "This report is primarily intended for Film Producers, Movie Critics, and aspiring Data Analysts who seek to understand long-term genre performance and apply basic data wrangling and visualization techniques using the Tidyverse framework."
   },
   {
+    "objectID": "analysis.html#data-origin-and-link",
+    "href": "analysis.html#data-origin-and-link",
+    "title": "Example Analysis",
+    "section": "2.1 Data Origin and Link",
+    "text": "2.1 Data Origin and Link\nThe data used for this analysis is the MovieLens ml-latest-small dataset (Harper and Konstan 2015). This dataset contains over 100,000 ratings and 3,683 tag applications across 9,742 movies, collected from 610 users.\nThe methodology relies heavily on the tidyverse framework for data cleaning and visualization, following modern practices for data science workflows (Wickham and Grolemund 2017).\n\nData Source Link: The dataset is publicly available from GroupLens Research."
+  },
+  {
+    "objectID": "analysis.html#data-dictionary",
+    "href": "analysis.html#data-dictionary",
+    "title": "Example Analysis",
+    "section": "2.2 Data Dictionary",
+    "text": "2.2 Data Dictionary\nWe utilize the core files ratings.csv and movies.csv:\n\n\n\n\n\n\n\n\nFile\nVariable\nDescription\n\n\n\n\nratings.csv\nuserId\nAnonymized user identifier.\n\n\n\nmovieId\nMovie identifier, used for joining tables.\n\n\n\nrating\nUser rating on a 0.5 to 5.0 scale.\n\n\nmovies.csv\ntitle\nMovie title, including the release year in parentheses.\n\n\n\ngenres\nA pipe-separated string listing all genres (e.g., Action|Thriller)."
+  },
+  {
     "objectID": "analysis.html#plot-1-average-rating-distribution",
     "href": "analysis.html#plot-1-average-rating-distribution",
     "title": "Example Analysis",
@@ -40,6 +54,34 @@
     "title": "Example Analysis",
     "section": "4.3 Plot 3: Highest-Rated Genres by Decade",
     "text": "4.3 Plot 3: Highest-Rated Genres by Decade\nWe use a column chart to highlight which specific genre achieved the absolute highest average rating in each decade. This identifies smaller, high-quality genres that might be overlooked in a popularity analysis.\n\n# --- Plot 3: Highest-Rated Genres by Decade --- #\n\n# Find the single genre with the highest average rating for each decade\nhighest_rated_decade &lt;- summary_data %&gt;%\n  group_by(decade) %&gt;%\n  filter(avg_rating == max(avg_rating)) %&gt;%\n  ungroup()\n\nhighest_rated_decade %&gt;%\n  ggplot(aes(x = decade, y = avg_rating, fill = genres)) +\n  geom_col(position = \"dodge\") + \n  labs(\n    title = \"Plot 3: Highest Average Rated Genre in Each Decade\",\n    subtitle = \"Non-mainstream genres like Film-Noir and Documentary often claim the highest average rating in older decades.\",\n    x = \"Movie Release Decade\",\n    y = \"Highest Average Rating (1.0 - 5.0)\",\n    fill = \"Genre\",\n    caption = \"Data Source: MovieLens ml-latest-small Dataset | Geom: col\"\n  ) +\n  scale_y_continuous(limits = c(0, 5)) +\n  plot_theme +\n  theme(axis.text.x = element_text(angle = 45, hjust = 1))\n\n\n\n\n\n\n\n# -------------------------------------------------------------------------------- #\n# 5. Function List (For Requirement Check)\n# -------------------------------------------------------------------------------- #\ncat(\"\\n--- Used Tidyverse Functions (for review) ---\\n\")\n\n\n--- Used Tidyverse Functions (for review) ---\n\ncat(\"dplyr Functions (required 5): left_join(), mutate(), filter(), group_by(), summarise(), select()\\n\")\n\ndplyr Functions (required 5): left_join(), mutate(), filter(), group_by(), summarise(), select()\n\ncat(\"tidyr Functions (required 1): separate_rows()\\n\")\n\ntidyr Functions (required 1): separate_rows()\n\ncat(\"ggplot2 geom_*() Functions (required 3): geom_violin(), geom_boxplot(), geom_line(), geom_point(), geom_col()\\n\")\n\nggplot2 geom_*() Functions (required 3): geom_violin(), geom_boxplot(), geom_line(), geom_point(), geom_col()\n\ncat(\"ggplot2 Features: facet_wrap(), labs(title, subtitle, caption, x, y)\\n\")\n\nggplot2 Features: facet_wrap(), labs(title, subtitle, caption, x, y)\n\n\n\n\n\n\n\n\nNote\n\n\n\nData Limitation The MovieLens dataset, collected by volunteer users, often contains a bias toward users interested in older, more niche, or “cult” films. This specialized user base may lead to inflated average ratings for smaller genres like Film-Noir and Documentary which lack wide public appeal but are highly valued by enthusiasts."
+  },
+  {
+    "objectID": "readme.html",
+    "href": "readme.html",
+    "title": "Quarto Website: MovieLens Data Analysis Project",
+    "section": "",
+    "text": "This repository hosts a personal data analysis website built using Quarto.\n\n\n\n\n\n\n\n\n\nDetail\nInformation\n\n\n\n\nAuthor\n[Boran Zhang]\n\n\nCourse\n[PH.140.777 Statistical Programming Paradigms and Workflows]\n\n\nData Source\nMovieLens ml-latest-small dataset\n\n\n\n\n\n\nThe final website is deployed via GitHub Pages.\nWebsite URL: https://bz1202.github.io/biostat777-intro-BORAN-ZHANG/\n\n\n\n\nThis website utilizes the following technologies for creation and deployment:\n\n\n\nFramework: Quarto (.qmd files)\nAnalysis: R with the Tidyverse ecosystem (dplyr, tidyr, ggplot2)\nGoal: To analyze the longitudinal trends in popularity and user satisfaction across various movie genres.\n\n\n\n\n\nPlatform: GitHub Pages\nOutput Folder: All HTML files and assets are rendered into the /docs directory, which serves as the source for the deployment.\nVersion Control: Git"
+  },
+  {
+    "objectID": "readme.html#author-project",
+    "href": "readme.html#author-project",
+    "title": "Quarto Website: MovieLens Data Analysis Project",
+    "section": "",
+    "text": "Detail\nInformation\n\n\n\n\nAuthor\n[Boran Zhang]\n\n\nCourse\n[PH.140.777 Statistical Programming Paradigms and Workflows]\n\n\nData Source\nMovieLens ml-latest-small dataset"
+  },
+  {
+    "objectID": "readme.html#deployed-website-link",
+    "href": "readme.html#deployed-website-link",
+    "title": "Quarto Website: MovieLens Data Analysis Project",
+    "section": "",
+    "text": "The final website is deployed via GitHub Pages.\nWebsite URL: https://bz1202.github.io/biostat777-intro-BORAN-ZHANG/"
+  },
+  {
+    "objectID": "readme.html#technical-overview",
+    "href": "readme.html#technical-overview",
+    "title": "Quarto Website: MovieLens Data Analysis Project",
+    "section": "",
+    "text": "This website utilizes the following technologies for creation and deployment:\n\n\n\nFramework: Quarto (.qmd files)\nAnalysis: R with the Tidyverse ecosystem (dplyr, tidyr, ggplot2)\nGoal: To analyze the longitudinal trends in popularity and user satisfaction across various movie genres.\n\n\n\n\n\nPlatform: GitHub Pages\nOutput Folder: All HTML files and assets are rendered into the /docs directory, which serves as the source for the deployment.\nVersion Control: Git"
   },
   {
     "objectID": "index.html",
