@@ -27,7 +27,7 @@ This report is primarily intended for **Film Producers, Movie Critics, and aspir
 
 # Data Source and Dictionary
 
-### Data Origin and Link
+## Data Origin and Link
 
 The data used for this analysis is the **MovieLens ml-latest-small dataset** [@Harper2015]. This dataset contains over 100,000 ratings and 3,683 tag applications across 9,742 movies, collected from 610 users.
 
@@ -35,7 +35,7 @@ The methodology relies heavily on the `tidyverse` framework for data cleaning an
 
 * **Data Source Link:** The dataset is publicly available from [GroupLens Research](https://grouplens.org/datasets/movielens/latest/).
 
-### Data Dictionary
+## Data Dictionary
 
 We utilize the core files `ratings.csv` and `movies.csv`:
 
