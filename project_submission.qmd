@@ -1,0 +1,210 @@
+---
+title: "Project 1"
+author: 
+  - name: Stephanie Hicks
+    url: https://stephaniehicks.com
+    affiliation: Department of Biostatistics, Johns Hopkins
+    affiliation_url: https://publichealth.jhu.edu
+description: "Building a website and practicing with command-line tools"
+date: 2025-10-23
+knitr: true
+draft: false
+---
+
+
+# Background
+
+
+**Due date: November 7 at 11:59pm**
+
+The goal of this assignment is to practice some of the skills we have been learning about in class around building data analyses and quarto by building and deploying a Quarto website. You also are asked to practice with some command-line and version control skills more formally. 
+
+### To submit your project 
+
+Please use this Quarto file (`.qmd`) and fill in the requested components by adding the URLs pointing to the GitHub repositories and deployed websites. Render this file to a **HTML file**. 
+
+You will push the `.qmd` file and rendered HTML file to a private GitHub repostory on GitHub classroom. The link to create a private GitHub repository for yourself to complete Project 1 will be posted in CoursePlus 
+
+::: {.callout-note}
+
+This creates an empty repository. You will need to clone the reopository locally, add your code, and push your code from your local repo to the remote repository on GitHub Classroom when ready. 
+
+Please **show all the code**, if relevant to a section.
+
+:::
+
+The TAs will grade the contents in the GitHub repo by cloning the repo and checking for all the things described below. 
+
+# Part 1
+
+Create a public GitHub repository on your own GitHub account and build a small website to introduce yourself to others in the course. You will also create a small data analysis on one of the webpages to practice literate programming in [Quarto](https://quarto.org). 
+
+![](../../images/quarto_schematic.png)
+
+## 1. Create a GitHub repo for your website
+
+Create a new public GitHub repository titled `biostat777-intro-<firstname>-<lastname>` (where you replace `<firstname>` with your first name and `<lastname>` with your last name) in your own personal GitHub account (e.g. `https://github.com/<yourgithubusername>/biostat777-intro-<firstname>-<lastname>`).
+
+## 2. Build a website using Quarto
+
+Create a new project locally within RStudio or VSCode and build a website for yourself. Your website should include the following: 
+
+1. A home/landing page. This is home page that someone will land on your website. At minimum it should include your name, a short summary about yourself (max 2-3 sentences), and a picture of something you enjoy to do for fun (or a picture of yourself if you are comfortable sharing one). 
+2. A page titled 'About'. This page should describe who you are in greater detail. It could include your professional interests and your educational and/or professional background and/or experience. It could also include any personal information you feel conformable sharing on the website. 
+3. A data analysis page called 'Example analysis'. You can pick any dataset you wish you analyze. In this webpage, you will analyze a dataset and summarize the results. The requirements for this webpage are the following: 
+    - You must describe what is the question you aim to answer with the data and data analysis. 
+    - You must describe who is the intended audience for the data analysis. 
+    - You must describe and link to where the original data come from that you chose. 
+    - You must include a link to a data dictionary for the data or create one inside the webpage. 
+    - Your analysis must include some minimal form of data wrangling with you using at least five different functions from `dplyr` or `tidyr`. 
+    - Your analysis should include at least three plots with you using at least three different `geom_*()` functions from `ggplot2` (or another package with `geom_*()` functions). 
+    - Plots should have titles, subtitles, captions, and human-understandable axis labels. 
+    - At least one plot should using a type of faceting (`facet_grid()` or `facet_wrap()`). 
+    - Your analysis must include one image or table (not one you created yourself, but one you have saved locally or one from the web). 
+    - Your analysis must include at least two different [callout blocks](https://quarto.org/docs/authoring/callouts.html).
+    - Your analysis must include a `.bib` file, which you use to reference at least three unique citations. For example, it could be to a website or paper from where the original data came from or it could be to a paper describing a method you are using to analyze the data. 
+    - Your analysis must include the use of at least 1 [margin content](https://quarto.org/docs/authoring/article-layout.html#margin-content). 
+    - You must summarize your analysis and/or results with a paragraph (4-6 sentences).
+    - At the end of the data analysis, list out each of the functions you used from each of the packages (`dplyr`, `tidyr`, and `ggplot2`) to help the TA with respect to making sure you met all the requirements described above. 
+
+## 3. Include a `README.md` file
+
+Your local repository should include a `README.md` file describing who is the author of the website and a link to the website after it has been deployed. Other things you might include are the technical details for how the website was created and/or deployed. 
+
+## 4. Deploy your website
+
+Deploy your website e.g. using [Quarto Pub](https://quarto.org/docs/publishing/quarto-pub.html), [GitHub pages](https://quarto.org/docs/publishing/github-pages.html), or [Netlify](https://quarto.org/docs/publishing/netlify.html), etc. 
+
+::: {.callout-note}
+
+Deploying your website to RPubs will not be accepted.
+
+:::
+
+## 5. Share your website
+
+Go to the Discussion Board in CoursePlus and write a short post with a link (URL) to your website (and URL to the corresponding GitHub repository) that you created. Also, list the URLs below for the purposes of grading. 
+
+As you read the introductions from other folks in the class, feel free to comment/reply using Discussion board.
+
+- **Link to your GitHub repository**: https://github.com/bz1202/biostat777-intro-BORAN-ZHANG
+
+- **Link to your deployed website**: https://bz1202.github.io/biostat777-intro-BORAN-ZHANG/
+
+# Part 2
+
+Consider the dataset called `students.csv` with the following contents: 
+
+```
+ID,Name,Age,Gender,Grade,Subject
+1,Alice,20,F,88,Math
+2,Bob,22,M,76,History
+3,Charlie,23,M,90,Math
+4,Diana,21,F,85,Science
+5,Eve,20,F,92,Math
+6,Frank,22,M,72,History
+7,Grace,23,F,78,Science
+8,Heidi,21,F,88,Math
+9,Ivan,20,M,85,Science
+10,Judy,22,F,79,History
+```
+
+1. Use [`wget`](https://www.gnu.org/software/wget) or [`curl`](https://curl.se/docs/tutorial.html) to download the `students.csv` file locally from [here](https://github.com/stephaniehicks/jhustatprogramming2025/blob/main/projects/01-project/students.csv).
+
+``` {bash}
+# Add your solution here
+DOWNLOAD_URL="https://raw.githubusercontent.com/stephaniehicks/jhustatprogramming2025/main/projects/01-project/students.csv"
+FILE_NAME="students.csv"
+curl -sL $DOWNLOAD_URL -o $FILE_NAME
+
+```
+
+2. Display the contents of the `students.csv` file using the `cat` command.
+
+```{bash}
+# Add your solution here
+cat students.csv
+
+```
+
+3. Display only the first 5 lines of the file using `head` to show the first few lines. 
+
+```{bash}
+# Add your solution here
+head -n 5 students.csv
+
+```
+
+4. Display only the last 3 lines of the file using `tail` to show the last few lines.
+
+```{bash}
+# Add your solution here
+tail -n 3 students.csv
+
+```
+
+5. Count the number of lines in the file using the `wc` command to count the lines.
+
+```{bash}
+# Add your solution here
+wc -l students.csv
+
+```
+
+6. Find all students who are taking "Math" as a subject using `grep` to filter lines with the subject "Math".
+
+```{bash}
+# Add your solution here
+grep 'Math' students.csv | grep -v 'Subject'
+
+```
+
+7. Find all female students using `grep` or `awk` to filter based on gender.
+```{bash}
+# Add your solution here
+grep ',F,' students.csv
+
+```
+
+8. Sort the file by the students' ages in ascending order. Use `sort` to order by the "Age" column.
+
+```{bash}
+# Add your solution here
+(head -n 1 $FILE_NAME && tail -n +2 $FILE_NAME | sort -t ',' -k 3,3n)
+
+```
+
+9. Find the unique subjects listed in the file. Use `cut`, `sort`, and `uniq` to extract unique subjects.
+
+```{bash}
+# Add your solution here
+cut -d ',' -f 6 $FILE_NAME | tail -n +2 | sort | uniq
+```
+
+10. Calculate the average grade of the students. Use `awk` to sum the grades and divide by the number of students.
+
+```{bash}
+# Add your solution here
+FILE_NAME="students.csv"
+awk -F ',' 'FNR > 1 { sum+=$5; count++ } END { printf "Average Grade: %.2f\n", sum/count }' $FILE_NAME
+```
+
+11. Replace all occurrences of "Math" with "Mathematics" in the file. Use `sed` to perform the replacement.
+
+
+```{bash}
+# Add your solution here
+FILE_NAME="students.csv"
+sed 's/Math/Mathematics/g' $FILE_NAME
+```
+
+12. Put all the commands into a shell script (`.sh`) file and run the command below to show the output from all the commands together. 
+
+```{bash}
+# Add your solution here 
+FILE_NAME="students.csv"
+rm $FILE_NAME
+echo "Clean up complete."
+
+```
+
